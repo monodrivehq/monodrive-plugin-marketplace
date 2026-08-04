@@ -1,0 +1,20 @@
+{
+  "name": "monodrive",
+  "version": "0.1.0",
+  "description": "Connect Claude to the Monodrive Brain through MCP.",
+  "author": {
+    "name": "Monodrive",
+    "email": "team@monodrive.ai"
+  },
+  "homepage": "https://monodrive.ai",
+  "repository": "https://github.com/monodriveHQ/agent-plugins",
+  "license": "MIT",
+  "keywords": [
+    "monodrive",
+    "brain",
+    "knowledge",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

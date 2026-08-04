@@ -1,0 +1,18 @@
+{
+  "name": "monodrive",
+  "owner": {
+    "name": "Monodrive",
+    "email": "team@monodrive.ai"
+  },
+  "metadata": {
+    "description": "Connect Claude to the Monodrive Brain.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "monodrive",
+      "source": "./plugins/monodrive",
+      "description": "Connect Claude to the Monodrive Brain through MCP."
+    }
+  ]
+}

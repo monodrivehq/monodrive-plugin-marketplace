@@ -1,0 +1,37 @@
+{
+  "name": "monodrive",
+  "version": "0.1.0",
+  "description": "Connect Codex to the Monodrive Brain through MCP.",
+  "author": {
+    "name": "Monodrive",
+    "email": "team@monodrive.ai",
+    "url": "https://monodrive.ai"
+  },
+  "homepage": "https://monodrive.ai",
+  "repository": "https://github.com/monodriveHQ/agent-plugins",
+  "license": "MIT",
+  "keywords": [
+    "monodrive",
+    "brain",
+    "knowledge",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Monodrive",
+    "shortDescription": "Connect your agent to your Monodrive Brain.",
+    "longDescription": "Use Monodrive to read and update the shared company knowledge in your Brain.",
+    "developerName": "Monodrive",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://monodrive.ai",
+    "brandColor": "#171717",
+    "defaultPrompt": [
+      "Say hello with Monodrive"
+    ]
+  }
+}

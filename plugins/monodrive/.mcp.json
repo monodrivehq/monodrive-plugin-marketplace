@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "monodrive": {
+      "type": "http",
+      "url": "https://app.monodrive.ai/mcp"
+    }
+  }
+}
