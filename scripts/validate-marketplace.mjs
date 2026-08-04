@@ -63,6 +63,18 @@ const mcp = readJson(
   "plugins/monodrive/.mcp.json",
   "PLUGIN_MCP_MISSING",
 );
+const codexStdioManifest = readJson(
+  "plugins/monodrive-stdio/.codex-plugin/plugin.json",
+  "PLUGIN_STDIO_CODEX_MISSING",
+);
+const claudeStdioManifest = readJson(
+  "plugins/monodrive-stdio/.claude-plugin/plugin.json",
+  "PLUGIN_STDIO_CLAUDE_MISSING",
+);
+const stdioMcp = readJson(
+  "plugins/monodrive-stdio/.mcp.json",
+  "PLUGIN_STDIO_MCP_MISSING",
+);
 
 if (codexMarketplace) {
   requireEqual(
@@ -71,12 +83,17 @@ if (codexMarketplace) {
     "MARKETPLACE_CODEX_NAME",
     "The Codex marketplace name must be monodrive.",
   );
-  const plugin = codexMarketplace.plugins?.[0];
+  const plugin = codexMarketplace.plugins?.find(
+    (entry) => entry.name === "monodrive",
+  );
+  const stdioPlugin = codexMarketplace.plugins?.find(
+    (entry) => entry.name === "monodrive-stdio",
+  );
   requireEqual(
     codexMarketplace.plugins?.length,
-    1,
+    2,
     "MARKETPLACE_CODEX_PLUGIN_COUNT",
-    "The Codex marketplace must contain one plugin.",
+    "The Codex marketplace must contain both Monodrive plugins.",
   );
   requireEqual(
     plugin?.name,
@@ -102,6 +119,18 @@ if (codexMarketplace) {
     "MARKETPLACE_CODEX_AUTH_POLICY",
     "The Codex plugin must request authentication during installation.",
   );
+  requireEqual(
+    stdioPlugin?.source?.path,
+    "./plugins/monodrive-stdio",
+    "MARKETPLACE_CODEX_STDIO_SOURCE",
+    "The Codex marketplace must use the stdio plugin directory.",
+  );
+  requireEqual(
+    stdioPlugin?.policy?.installation,
+    "AVAILABLE",
+    "MARKETPLACE_CODEX_STDIO_INSTALL_POLICY",
+    "The Codex stdio plugin must be available to install.",
+  );
 }
 
 if (claudeMarketplace) {
@@ -113,15 +142,21 @@ if (claudeMarketplace) {
   );
   requireEqual(
     claudeMarketplace.plugins?.length,
-    1,
+    2,
     "MARKETPLACE_CLAUDE_PLUGIN_COUNT",
-    "The Claude marketplace must contain one plugin.",
+    "The Claude marketplace must contain both Monodrive plugins.",
   );
   requireEqual(
     claudeMarketplace.plugins?.[0]?.source,
     "./plugins/monodrive",
     "MARKETPLACE_CLAUDE_SOURCE",
     "The Claude marketplace must use the Monodrive plugin directory.",
+  );
+  requireEqual(
+    claudeMarketplace.plugins?.[1]?.source,
+    "./plugins/monodrive-stdio",
+    "MARKETPLACE_CLAUDE_STDIO_SOURCE",
+    "The Claude marketplace must use the stdio plugin directory.",
   );
 }
 
@@ -150,6 +185,31 @@ for (const [host, manifest] of [
   );
 }
 
+for (const [host, manifest] of [
+  ["Codex", codexStdioManifest],
+  ["Claude", claudeStdioManifest],
+]) {
+  if (!manifest) continue;
+  requireEqual(
+    manifest.name,
+    "monodrive-stdio",
+    `PLUGIN_STDIO_${host.toUpperCase()}_NAME`,
+    `The ${host} stdio plugin name must be monodrive-stdio.`,
+  );
+  requireEqual(
+    manifest.skills,
+    "./skills/",
+    `PLUGIN_STDIO_${host.toUpperCase()}_SKILLS`,
+    `The ${host} stdio plugin must expose the skills directory.`,
+  );
+  requireEqual(
+    manifest.mcpServers,
+    "./.mcp.json",
+    `PLUGIN_STDIO_${host.toUpperCase()}_MCP`,
+    `The ${host} stdio plugin must use its MCP configuration.`,
+  );
+}
+
 if (mcp) {
   requireEqual(
     mcp.mcpServers?.monodrive?.type,
@@ -162,6 +222,27 @@ if (mcp) {
     "https://app.monodrive.ai/mcp",
     "MCP_URL",
     "The plugin must use the production Monodrive MCP URL.",
+  );
+}
+
+if (stdioMcp) {
+  requireEqual(
+    stdioMcp.mcpServers?.["monodrive-stdio"]?.command,
+    "node",
+    "MCP_STDIO_COMMAND",
+    "The stdio MCP server must run with Node.js.",
+  );
+  requireEqual(
+    stdioMcp.mcpServers?.["monodrive-stdio"]?.args?.[0],
+    "./mcp/server.mjs",
+    "MCP_STDIO_SCRIPT",
+    "The stdio MCP server must run the bundled server.",
+  );
+  requireEqual(
+    stdioMcp.mcpServers?.["monodrive-stdio"]?.cwd,
+    ".",
+    "MCP_STDIO_CWD",
+    "The stdio MCP server must start in the plugin directory.",
   );
 }
 
@@ -185,6 +266,16 @@ if (!existsSync(skillPath)) {
       path: relative(repositoryRoot, skillPath),
     });
   }
+}
+
+const stdioSkillPath = resolve(
+  repositoryRoot,
+  "plugins/monodrive-stdio/skills/hello-world/SKILL.md",
+);
+if (!existsSync(stdioSkillPath)) {
+  fail("SKILL_STDIO_MISSING", "The stdio hello-world skill is missing.", {
+    path: relative(repositoryRoot, stdioSkillPath),
+  });
 }
 
 for (const unsupportedDirectory of [".cursor-plugin", "plugins/monodrive/.cursor-plugin"]) {

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "monodrive-stdio": {
+      "command": "node",
+      "args": [
+        "./mcp/server.mjs"
+      ],
+      "cwd": "."
+    }
+  }
+}

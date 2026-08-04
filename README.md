@@ -1,7 +1,7 @@
 # Monodrive agent plugins
 
-Install Monodrive in Claude Code or Codex. The plugin includes a small sample
-skill and connects the agent to the production Monodrive MCP server.
+Install Monodrive in Claude Code or Codex. The marketplace includes the
+production HTTP plugin and a local stdio diagnostic plugin.
 
 ## Claude Code
 
@@ -23,6 +23,12 @@ Run the sample skill:
 /monodrive:hello-world
 ```
 
+To test local stdio discovery, install the diagnostic plugin:
+
+```sh
+/plugin install monodrive-stdio@monodrive
+```
+
 ## Codex
 
 Add the marketplace:
@@ -37,7 +43,14 @@ Install the plugin:
 codex plugin add monodrive@monodrive
 ```
 
-Start a new session. Then ask the agent to use the `hello-world` skill.
+To test local stdio discovery, install the diagnostic plugin:
+
+```sh
+codex plugin add monodrive-stdio@monodrive
+```
+
+Start a new session. Then ask the agent to call the Monodrive stdio `hello`
+tool. A successful call returns `Hello from Monodrive stdio.`
 
 ## Validate the repository
 

@@ -1,0 +1,20 @@
+{
+  "name": "monodrive-stdio",
+  "version": "0.1.0",
+  "description": "Test Claude plugin discovery with a local Monodrive stdio MCP server.",
+  "author": {
+    "name": "Monodrive",
+    "email": "team@monodrive.ai"
+  },
+  "homepage": "https://monodrive.ai",
+  "repository": "https://github.com/monodriveHQ/agent-plugins",
+  "license": "MIT",
+  "keywords": [
+    "monodrive",
+    "stdio",
+    "mcp",
+    "test"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
