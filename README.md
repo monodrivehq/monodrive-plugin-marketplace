@@ -59,12 +59,13 @@ Plugin installation is recommended.
 
 1. Open Claude Desktop and select the **Code** tab.
 2. Select **Customize** in the sidebar.
-3. Next to personal plugins, select **Add plugin > Create plugin > Add
+3. Next to personal plugins, select **Add > Add
    marketplace**.
-4. Enter `monodriveHQ/agent-plugins` and submit it.
-5. Open the **Code** tab in the plugin directory.
-6. Install the `monodrive` plugin.
-7. Run `/mcp` to confirm that the Monodrive MCP server is available.
+4. Select **Add from a repository**
+5. Enter `https://github.com/monodriveHQ/agent-plugins/` and submit it..
+6.  On the next screen select monodrive and click + to install the `monodrive` plugin.
+7. Select `Connectors`, then **Monodrive > Install**.
+8. Run `/mcp` to confirm that the Monodrive MCP server is available.
 
 ## Verify the connection
 
