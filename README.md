@@ -1,56 +1,76 @@
 # Monodrive agent plugins
 
-Install Monodrive in Claude Code or Codex. The marketplace includes the
-production HTTP plugin and a local stdio diagnostic plugin.
+Connect Codex or Claude Code to the production Monodrive MCP server.
 
-## Claude Code
+## Connect to Codex
 
-Add the marketplace:
+Plugin installation is recommended.
+
+1. Add the custom marketplace in a terminal:
+
+   ```sh
+   codex plugin marketplace add monodriveHQ/agent-plugins
+   ```
+
+2. Install the plugin. Use one of these methods:
+
+   - Run `codex plugin add monodrive@monodrive` in a terminal.
+   - Run `/plugins` in Codex, select the Monodrive marketplace, and install
+     `monodrive`.
+
+3. Start a new Codex thread.
+4. Complete the Monodrive sign-in process when Codex requests it.
+
+To connect without the plugin, open **Settings > MCP Servers**. Add a
+**Streamable HTTP** server with these values:
+
+- Name: `monodrive`
+- URL: `https://app.monodrive.ai/mcp`
+
+## Connect to Claude Code from a terminal
+
+Plugin installation is recommended. Run these commands in Claude Code or the
+Claude Code extension:
+
+1. Add the custom marketplace:
+
+   ```text
+   /plugin marketplace add monodriveHQ/agent-plugins
+   ```
+
+2. Install the plugin:
+
+   ```text
+   /plugin install monodrive@monodrive
+   ```
+
+3. Run `/mcp` to confirm that the Monodrive MCP server is available.
+4. Start a new session if the server does not appear in the current session.
+
+To connect without the plugin, run:
 
 ```sh
-/plugin marketplace add monodriveHQ/agent-plugins
+claude mcp add monodrive --transport http https://app.monodrive.ai/mcp --scope user
 ```
 
-Install the plugin:
+## Connect to Claude Code from Claude Desktop
 
-```sh
-/plugin install monodrive@monodrive
-```
+Plugin installation is recommended.
 
-Run the sample skill:
+1. Open Claude Desktop and select the **Code** tab.
+2. Select **Customize** in the sidebar.
+3. Next to personal plugins, select **Add plugin > Create plugin > Add
+   marketplace**.
+4. Enter `monodriveHQ/agent-plugins` and submit it.
+5. Open the **Code** tab in the plugin directory.
+6. Install the `monodrive` plugin.
+7. Run `/mcp` to confirm that the Monodrive MCP server is available.
 
-```text
-/monodrive:hello-world
-```
+## Verify the connection
 
-To test local stdio discovery, install the diagnostic plugin:
-
-```sh
-/plugin install monodrive-stdio@monodrive
-```
-
-## Codex
-
-Add the marketplace:
-
-```sh
-codex plugin marketplace add monodriveHQ/agent-plugins
-```
-
-Install the plugin:
-
-```sh
-codex plugin add monodrive@monodrive
-```
-
-To test local stdio discovery, install the diagnostic plugin:
-
-```sh
-codex plugin add monodrive-stdio@monodrive
-```
-
-Start a new session. Then ask the agent to call the Monodrive stdio `hello`
-tool. A successful call returns `Hello from Monodrive stdio.`
+Start a new chat and ask the agent to use Monodrive. Complete the sign-in
+process if the agent requests it. If the MCP server does not appear, restart
+the agent client and start a new session.
 
 ## Validate the repository
 
@@ -66,9 +86,8 @@ Run only the marketplace validator:
 npm run validate
 ```
 
-You can also use the host validators:
+You can also validate the Claude marketplace manifest:
 
 ```sh
 claude plugin validate .
-codex plugin marketplace add .
 ```

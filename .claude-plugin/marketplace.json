@@ -13,11 +13,6 @@
       "name": "monodrive",
       "source": "./plugins/monodrive",
       "description": "Connect Claude to the Monodrive Brain through MCP."
-    },
-    {
-      "name": "monodrive-stdio",
-      "source": "./plugins/monodrive-stdio",
-      "description": "Test plugin discovery with a local Monodrive stdio MCP server."
     }
   ]
 }
