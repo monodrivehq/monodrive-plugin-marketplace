@@ -1,4 +1,4 @@
-# Monodrive agent plugins
+# Monodrive plugin marketplace
 
 Connect Codex or Claude Code to the production Monodrive MCP server.
 
@@ -9,7 +9,7 @@ Plugin installation is recommended.
 1. Add the custom marketplace in a terminal:
 
    ```sh
-   codex plugin marketplace add monodriveHQ/agent-plugins
+   codex plugin marketplace add monodrivehq/monodrive-plugin-marketplace
    ```
 
 2. Install the plugin. Use one of these methods:
@@ -35,7 +35,7 @@ Claude Code extension:
 1. Add the custom marketplace:
 
    ```text
-   /plugin marketplace add monodriveHQ/agent-plugins
+   /plugin marketplace add monodrivehq/monodrive-plugin-marketplace
    ```
 
 2. Install the plugin:
@@ -59,11 +59,10 @@ Plugin installation is recommended.
 
 1. Open Claude Desktop and select the **Code** tab.
 2. Select **Customize** in the sidebar.
-3. Next to personal plugins, select **Add > Add
-   marketplace**.
-4. Select **Add from a repository**
-5. Enter `https://github.com/monodriveHQ/agent-plugins/` and submit it..
-6.  On the next screen select monodrive and click + to install the `monodrive` plugin.
+3. Next to personal plugins, select **Add > Add marketplace**.
+4. Select **Add from a repository**.
+5. Enter `https://github.com/monodrivehq/monodrive-plugin-marketplace` and submit it.
+6. On the next screen, select Monodrive and click **+** to install the `monodrive` plugin.
 7. Select `Connectors`, then **Monodrive > Install**.
 8. Run `/mcp` to confirm that the Monodrive MCP server is available.
 

@@ -1,5 +1,5 @@
 {
-  "name": "@monodrivehq/agent-plugins",
+  "name": "@monodrivehq/monodrive-plugin-marketplace",
   "version": "0.2.0",
   "private": true,
   "type": "module",
