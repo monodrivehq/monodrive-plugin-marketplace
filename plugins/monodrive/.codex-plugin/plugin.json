@@ -1,6 +1,6 @@
 {
   "name": "monodrive",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Connect Codex to the Monodrive Brain through MCP.",
   "author": {
     "name": "Monodrive",
