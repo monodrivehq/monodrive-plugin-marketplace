@@ -17,6 +17,40 @@ test("the repository is a valid Monodrive marketplace", () => {
   assert.match(result.stdout, /Monodrive marketplace is valid/);
 });
 
+test("the marketplace uses its canonical repository identity", () => {
+  const root = new URL("..", import.meta.url);
+  const read = (path) => readFileSync(new URL(path, root), "utf8");
+  const repositoryUrl =
+    "https://github.com/monodrivehq/monodrive-plugin-marketplace";
+
+  assert.equal(
+    JSON.parse(read("package.json")).name,
+    "@monodrivehq/monodrive-plugin-marketplace",
+  );
+  assert.equal(
+    JSON.parse(read("plugins/monodrive/.claude-plugin/plugin.json"))
+      .repository,
+    repositoryUrl,
+  );
+  assert.equal(
+    JSON.parse(read("plugins/monodrive/.codex-plugin/plugin.json")).repository,
+    repositoryUrl,
+  );
+  assert.match(
+    read("README.md"),
+    /codex plugin marketplace add monodrivehq\/monodrive-plugin-marketplace/,
+  );
+  assert.doesNotMatch(
+    [
+      read("README.md"),
+      read("package.json"),
+      read("plugins/monodrive/.claude-plugin/plugin.json"),
+      read("plugins/monodrive/.codex-plugin/plugin.json"),
+    ].join("\n"),
+    /monodriveHQ|agent-plugins/,
+  );
+});
+
 test("the plugin exposes one model-invoked Monodrive skill", () => {
   const plugin = new URL("../plugins/monodrive/", import.meta.url);
   const skills = new URL("skills/", plugin);

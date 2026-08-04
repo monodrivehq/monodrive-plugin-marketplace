@@ -7,7 +7,7 @@
     "email": "team@monodrive.ai"
   },
   "homepage": "https://monodrive.ai",
-  "repository": "https://github.com/monodriveHQ/agent-plugins",
+  "repository": "https://github.com/monodrivehq/monodrive-plugin-marketplace",
   "license": "MIT",
   "keywords": [
     "monodrive",
