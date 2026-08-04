@@ -166,21 +166,26 @@ if (mcp) {
 
 const skillPath = resolve(
   repositoryRoot,
-  "plugins/monodrive/skills/hello-world/SKILL.md",
+  "plugins/monodrive/skills/monodrive/SKILL.md",
 );
 if (!existsSync(skillPath)) {
-  fail("SKILL_HELLO_WORLD_MISSING", "The hello-world skill is missing.", {
+  fail("SKILL_MONODRIVE_MISSING", "The Monodrive skill is missing.", {
     path: relative(repositoryRoot, skillPath),
   });
 } else {
   const skill = readFileSync(skillPath, "utf8");
-  if (!skill.includes("name: hello-world")) {
-    fail("SKILL_HELLO_WORLD_NAME", "The hello-world skill name is invalid.", {
+  if (!skill.includes("name: monodrive")) {
+    fail("SKILL_MONODRIVE_NAME", "The Monodrive skill name is invalid.", {
       path: relative(repositoryRoot, skillPath),
     });
   }
-  if (!skill.includes("Hello from Monodrive.")) {
-    fail("SKILL_HELLO_WORLD_RESPONSE", "The hello-world reply is missing.", {
+  if (!skill.includes("user-invocable: false")) {
+    fail("SKILL_MONODRIVE_INVOCATION", "The Monodrive skill must be model-invoked only.", {
+      path: relative(repositoryRoot, skillPath),
+    });
+  }
+  if (!skill.includes('guides_get({ topic: "monodrive-mcp-instructions" })')) {
+    fail("SKILL_MONODRIVE_GUIDE", "The Monodrive skill must load the MCP operating guide.", {
       path: relative(repositoryRoot, skillPath),
     });
   }
