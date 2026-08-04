@@ -1,0 +1,7 @@
+interface:
+  display_name: "Monodrive"
+  short_description: "Use shared Workspace knowledge with Monodrive."
+  default_prompt: "Use $monodrive to work with shared Workspace knowledge."
+
+policy:
+  allow_implicit_invocation: true
