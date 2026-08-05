@@ -4,4 +4,4 @@ description: Monodrive shared Workspace knowledge. Use when a task needs company
 user-invocable: false
 ---
 
-Use the Monodrive MCP. When no available help the user connect. Load the relevant Monodrive guides once per session before acting.
+Use the Monodrive MCP. If it is not available, help the user connect it. Load `guides_get({ topic: "monodrive-mcp-instructions" })` once per session, then load the relevant Monodrive guide before acting.
