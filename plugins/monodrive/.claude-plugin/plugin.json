@@ -1,6 +1,6 @@
 {
   "name": "monodrive",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Connect Claude to the Monodrive Brain through MCP.",
   "author": {
     "name": "Monodrive",
