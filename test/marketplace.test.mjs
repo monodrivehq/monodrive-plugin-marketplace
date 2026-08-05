@@ -101,8 +101,8 @@ test("the restructured plugin has one release version", () => {
     readFileSync(new URL("package.json", root), "utf8"),
   );
 
-  assert.equal(claudeMarketplace.metadata.version, "0.2.1");
-  assert.equal(claudePlugin.version, "0.2.1");
-  assert.equal(codexPlugin.version, "0.2.1");
-  assert.equal(packageMetadata.version, "0.2.1");
+  assert.equal(claudeMarketplace.metadata.version, "0.2.2");
+  assert.equal(claudePlugin.version, "0.2.2");
+  assert.equal(codexPlugin.version, "0.2.2");
+  assert.equal(packageMetadata.version, "0.2.2");
 });
