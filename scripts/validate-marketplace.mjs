@@ -184,8 +184,8 @@ if (!existsSync(skillPath)) {
       path: relative(repositoryRoot, skillPath),
     });
   }
-  if (!skill.includes('guides_get({ topic: "monodrive-mcp-instructions" })')) {
-    fail("SKILL_MONODRIVE_GUIDE", "The Monodrive skill must load the MCP operating guide.", {
+  if (!skill.includes("guides_get")) {
+    fail("SKILL_MONODRIVE_GUIDE", "The Monodrive skill must route tasks through guides_get.", {
       path: relative(repositoryRoot, skillPath),
     });
   }

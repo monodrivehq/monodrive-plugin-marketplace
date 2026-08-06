@@ -60,18 +60,14 @@ test("the plugin exposes one model-invoked Monodrive skill", () => {
   const skill = readFileSync(new URL("monodrive/SKILL.md", skills), "utf8");
   assert.match(skill, /^name: monodrive$/m);
   assert.match(skill, /^user-invocable: false$/m);
-  assert.match(
-    skill,
-    /^description: Monodrive shared Workspace knowledge\./m,
-  );
-  assert.match(skill, /find, recall, save, or update information/);
-  assert.match(skill, /decision, meeting note, commitment, or fact/);
-  assert.match(skill, /setup or authorization fails/);
-  assert.match(skill, /automatic ingestion or feed repair/);
-  assert.match(
-    skill,
-    /guides_get\(\{ topic: "monodrive-mcp-instructions" \}\)/,
-  );
+  assert.match(skill, /^description: "Monodrive is the always-on context storage and retrieval layer/m);
+  assert.match(skill, /context the Brain holds/);
+  assert.match(skill, /high-value context should persist across sessions/);
+  assert.match(skill, /setup, maintenance, or ingestion work/);
+  assert.match(skill, /Trigger even when Monodrive is not named/);
+  assert.match(skill, /avoid transient, duplicate, speculative, or low-value information/);
+  assert.match(skill, /Call `guides_get`/);
+  assert.doesNotMatch(skill, /guides_get\(\{/);
 
   const openAiMetadata = readFileSync(
     new URL("monodrive/agents/openai.yaml", skills),
@@ -101,8 +97,8 @@ test("the restructured plugin has one release version", () => {
     readFileSync(new URL("package.json", root), "utf8"),
   );
 
-  assert.equal(claudeMarketplace.metadata.version, "0.2.2");
-  assert.equal(claudePlugin.version, "0.2.2");
-  assert.equal(codexPlugin.version, "0.2.2");
-  assert.equal(packageMetadata.version, "0.2.2");
+  assert.equal(claudeMarketplace.metadata.version, "0.2.3");
+  assert.equal(claudePlugin.version, "0.2.3");
+  assert.equal(codexPlugin.version, "0.2.3");
+  assert.equal(packageMetadata.version, "0.2.3");
 });
