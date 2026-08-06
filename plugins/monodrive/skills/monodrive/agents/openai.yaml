@@ -1,7 +1,7 @@
 interface:
   display_name: "Monodrive"
-  short_description: "Use shared Workspace knowledge with Monodrive."
-  default_prompt: "Use $monodrive to work with shared Workspace knowledge."
+  short_description: "Use your durable shared company Brain."
+  default_prompt: "Use $monodrive to retrieve or preserve high-value context in our shared company Brain."
 
 policy:
   allow_implicit_invocation: true
